@@ -72,6 +72,14 @@ if(require.main == module) {
 	if ( program.url) {
 console.log ('using url mode ' + program.url);
 		// do something with th URL
+	    rest.get(program.url).on('complete', function(result) {
+		if (result instanceof Error) {
+		    console.log('Error: ' + result.message, ' retrieving ' + program.url);
+		} else {
+			// data from web site
+		    console.log(result);
+		}
+});
 	} else { // is just a file, nor url
 console.log ('using file mode ' + program.file);
 	    var checkJson = checkHtmlFile(program.file, program.checks);
