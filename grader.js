@@ -89,7 +89,8 @@ if(require.main == module) {
 	.option('-u, --url <url>', 'URL to access')
         .parse(process.argv);
     if (program.file || program.url) {
-	if ( program.url) {
+	if ( program.url.length > 0) {
+console.log("program.url");
 	// do something with the URL
 	    rest.get(program.url).on('complete', function(result) {
 		if (result instanceof Error) {
@@ -103,6 +104,7 @@ if(require.main == module) {
 });
 	} else { 
 	    // is just a file, nor url
+console.log("program.file");
 	    var checkJson = checkHtmlFile(program.file, program.checks);
 	    var outJson = JSON.stringify(checkJson, null, 4);
 	    console.log(outJson);
